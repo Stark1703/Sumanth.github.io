@@ -1,0 +1,35 @@
+# ETL Pipeline Configuration
+
+data_sources:
+  csv_path: '/data/raw_data.csv'
+  api_url: 'https://api.example.com/data'
+  source_db:
+    host: 'localhost'
+    port: 5432
+    database: 'source_db'
+    user: 'user'
+    password: 'password'
+
+target_db:
+  host: 'localhost'
+  port: 5432
+  database: 'etl_db'
+  user: 'user'
+  password: 'password'
+  table_name: 'processed_data'
+
+transformation:
+  remove_duplicates: true
+  fill_missing: true
+  handle_outliers: true
+  outlier_method: 'iqr'  # or 'zscore'
+  
+validation:
+  check_null_percentage: 5
+  check_duplicates: true
+  check_row_count_change: 10
+  
+logging:
+  level: 'INFO'
+  file: '/logs/etl_pipeline.log'
+  format: '%(asctime)s - %(levelname)s - %(message)s'
